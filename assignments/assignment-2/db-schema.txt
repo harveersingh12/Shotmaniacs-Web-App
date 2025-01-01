@@ -1,0 +1,21 @@
+event(eid, cid, name, type, date, location, status, bookingType, isaccepted, duration, productionmanager, maxmembers, currentmembers,
+	PK(eid),
+	FK(cid) REF client(cid));
+
+client(cid, name, email,
+	PK(cid));
+
+crewmember(cmid, name, email, password, role, job,
+	PK(cmid));
+
+contract(cmid, eid,
+	FK(cmid) REF crewmember(cmid),
+	FK(eid) REF event(eid));
+
+announcement(aid, name, date, message, urgency, cmid,
+	PF(aid),
+	FK(cmid) REF crewmember(cmid));
+
+annoucementcontract(aid, cmid,
+	FK(aid) REF announcement(aid),
+	FK(cmid) REF crewmember(cmid));

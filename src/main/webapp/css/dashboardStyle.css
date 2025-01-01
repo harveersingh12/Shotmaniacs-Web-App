@@ -1,0 +1,1134 @@
+:root {
+    --shotmaniacs-blue:#1696D2;
+}
+
+::-webkit-scrollbar {
+    width: 12px;
+}
+
+::-webkit-scrollbar-track {
+    background: #000000;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #ffffff;
+    border: 2px solid #000000;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: #e0e0e0;
+}
+
+::-webkit-scrollbar-thumb:active {
+    background-color: #c0c0c0;
+}
+
+* { margin:0; padding:0; border:0; box-sizing: border-box; font-family: kionaReg, serif;}
+
+@font-face {
+    font-family: kionaReg;
+    src: url(Kiona-Regular.woff);
+}
+@font-face {
+    font-family: kionaItalic;
+    src: url(Kiona-Itallic.woff);
+}
+
+html, body {
+    max-height: 100%;
+}
+
+body {
+    font-weight: 300;
+    background-color: #121212;
+}
+
+h1 {
+    padding: 20px;
+    color: white;
+    text-align: center;
+    margin: 0;
+    width: 100%;
+}
+
+h3 {
+    color: white;
+    margin-bottom: 5px;
+}
+
+.main-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.c80, .c20 {
+    background-color: #282828;
+    margin: 10px;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.c80 {
+    width: 70%;
+}
+
+.c20 {
+    width: 25%;
+}
+
+.arrow {
+    border: solid white;
+    border-width: 0 0.5px 0.5px 0;
+    display: inline-block;
+    padding: 5px;
+}
+
+.down {
+    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+}
+
+.container-with-down-arrow {
+    background-color: #121212;
+    color: white;
+    display: flex;
+    align-items: center;
+    padding: 2px;
+}
+
+.custom-button {
+    background-color: var(--shotmaniacs-blue);
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    font-size: 16px;
+    transition: background-color 0.3s, transform 0.3s;
+    cursor: pointer;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.custom-button:hover {
+    background-color: white;
+    color: black;
+    transform: scale(1.05);
+}
+
+.right-side-button {
+    margin-left: 10px;
+    margin-bottom: 10px;
+}
+
+.centered-button {
+    display: block;
+    margin: 20px auto;
+}
+.announcement-container{
+    max-height: 154px;
+    overflow-y: auto;
+}
+
+
+.announcement-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.announcement-form label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: white;
+}
+
+.announcement-form textarea {
+    width: 100%;
+    height: 150px;
+    padding: 10px;
+    margin-bottom: 15px;
+    font-size: 16px;
+    resize: none;
+    box-sizing: border-box;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    background-color: #f9f9f9;
+}
+
+.announcement-form textarea::placeholder {
+    color: #000000;
+}
+
+.announcement-form select {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+.announcement-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.announcement-table th, .announcement-table td {
+    padding: 12px;
+    text-align: left;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.trash-icon {
+    margin: 5px;
+    color: rgba(246, 0, 0, 0.41);
+}
+
+/*Stuff for announcement dropdown*/
+
+.dropdown {
+    position: relative;
+    display: flex; /* Use flexbox for layout */
+    flex-direction: column; /* Stack items vertically */
+    align-items: center; /* Center items horizontally */
+    margin-bottom: 20px;
+    text-align: center; /* Center text within the container */
+}
+
+.announcement-box-h3 {
+    text-align: center;
+}
+
+
+.dropdown-toggle {
+    margin-top: 5px;
+    background-color: var(--shotmaniacs-blue);
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    z-index: 1;
+    max-height: 500px;
+    overflow-y: auto;
+}
+
+@keyframes dropdownAnimation {
+    0% {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+.dropdown:hover .dropdown-menu {
+    display: block;
+    animation: dropdownAnimation 0.3s ease forwards;
+}
+
+.dropdown-menu a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+
+.dropdown-menu label {
+    display: block;
+    padding: 8px;
+    cursor: pointer;
+    color: black;
+}
+
+.dropdown-menu label:hover {
+    background-color: #ddd;
+}
+
+.dropdown-menu input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+.dropdown-menu input[type="text"] {
+    width: 90%;
+    padding: 5px;
+    margin: 5px;
+    border: 1px solid #ccc;
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+.selected-options {
+    display: inline-block;
+    padding: 8px;
+}
+
+.bookings, .announcement-box {
+    padding: 15px;
+    border-radius: 15px;
+    background-color: #282828;
+    color: white;
+    text-align: left;
+}
+.table-container {
+    max-height: 550px;
+    overflow-y: auto;
+    padding-left: 2rem;
+    padding-right: 2rem;
+}
+
+.styled-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    overflow: auto;
+}
+
+.styled-table th, .styled-table td {
+    padding: 12px 15px;
+    text-align: left;
+    border: 1px solid #595959;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+.styled-table th{
+    position: sticky;
+    top: 0;
+    background-color: #1696D2;
+}
+
+/*This is style for each row*/
+.booking {
+    cursor: pointer;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+
+}
+
+.booking:hover {
+    background-color: rgba(22, 150, 210, 1);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    transform: scale(1.03);
+    border-radius: 20px;
+}
+
+.styled-table thead {
+    background-color: var(--shotmaniacs-blue);
+    color: white;
+}
+.draggable-bar {
+    width: 100%;
+    height: 20px;
+    background-color: #ffffff;
+    cursor: move;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.filter-info {
+    display: none;
+    flex-direction: row;
+    justify-content: center;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+}
+
+.filter-info h2 {
+    margin-top: 0;
+    color: #333;
+}
+
+.filter-info label {
+    display: block;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.filter-info input[type="text"],
+.filter-info input[type="date"],
+.filter-info select {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+.accepted-filter-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.accepted-filter-container label {
+    margin-bottom: 0;
+    margin-right: 10px;
+}
+
+.filter-info .button-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.filter-info button {
+    padding: 10px 20px;
+    background-color: black;
+    border: none;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.filter-info button:hover {
+    background-color: #2b2b2b;
+    color: white;
+}
+/*Finish of admin dash style - announcement - filter*/
+
+/*Create new member account CSS*/
+.create-new-account {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.7);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
+    backdrop-filter: blur(7px);
+    -webkit-backdrop-filter: blur(7px);
+}
+
+#create-new-account-form {
+    width: 500px;
+    background-color: white;
+    padding: 30px;
+    border-radius: 15px;
+    position: relative;
+    flex-direction: column;
+    align-items: center;
+}
+
+#create-new-account-form label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+#create-new-account-form input,
+#create-new-account-form select {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+#image-preview {
+    display: none;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 20px;
+}
+
+.wrap {
+    text-align: left;
+}
+
+#button-container-submit-add-member {
+    text-align: center;
+}
+
+.wrap button {
+    width: 200px;
+    background-color: var(--shotmaniacs-blue);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.wrap button:hover {
+    background-color: #45a049;
+}
+
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 5px;
+    background-color: white;
+    color: black;
+    border: none;
+    padding: 5px 10px;
+    font-size: 18px;
+    cursor: pointer;
+    border-radius: 50%;
+    transition: background-color 0.3s ease;
+}
+
+.close-button:hover {
+    background-color: #333;
+}
+
+#responseContainer {
+    margin: 10px;
+    font-size: 15px;
+    color: #333;
+}
+
+
+
+/*Change permissions CSS*/
+.change-permissions{
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.7);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
+    backdrop-filter: blur(7px);
+    -webkit-backdrop-filter: blur(7px);
+}
+
+#change-permissions-popup{
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    background-color: white;
+}
+
+/*Announcements CSS*/
+.announcement-list {
+    text-align: center;
+}
+
+.announcement-item {
+    box-shadow: 0 0 2px 2px rgba(255, 255, 255, 0.29);
+    display: block;
+    padding: 5px;
+    background-color: #f9f9f9;
+    color: black;
+    border-radius: 15px;
+    box-sizing: border-box;
+    width: 85%;
+    margin: 0 auto 10px auto;
+}
+
+.announcement-item h4 {
+    margin: 0;
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+.announcement-item p {
+    margin: 5px 0;
+}
+
+.trash-icon {
+    color: red;
+    cursor: pointer;
+    background: transparent;
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 17px;
+    margin-left: 5px;
+}
+
+/*Navigation bar*/
+.header-navbar {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #121212;
+    width: 100%;
+    height: 150px;
+    color: white;
+}
+
+.header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #121212;
+    width: 100%;
+    height: 75%;
+}
+
+.header > img {
+    height: 100%;
+}
+.navbar {
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 25%;
+    width: 100%;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 1rem;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-links li {
+    padding: 0.5rem;
+    position: relative;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: #ddd;
+}
+.nav-links button {
+    color: white;
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    transition: color 0.3s ease;
+    font: inherit;
+}
+
+.nav-links button:hover {
+    color: #ddd;
+}
+
+.nav-links li button {
+    width: 100%;
+    text-align: left;
+}
+
+/*Styling for the dropdown of the services*/
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #333;
+    min-width: 220px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    border-radius: 4px;
+    overflow: hidden;
+    animation: fadeIn 0.3s ease;
+    margin-top: 5px;
+}
+
+.dropdown-content a,
+.dropdown-content button {
+    font-size: 16px;
+    color: white;
+    padding: 12px 20px;
+    text-decoration: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: block;
+    width: 100%;
+    text-align: left;
+    transition: background-color 0.3s ease, padding-left 0.3s ease;
+    box-sizing: border-box;
+}
+
+.dropdown-content a:hover,
+.dropdown-content button:hover {
+    background-color: #575757;
+    padding-left: 24px;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.nav-toggle {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.nav-toggle span {
+    height: 2px;
+    width: 25px;
+    background-color: white;
+    margin: 4px;
+}
+
+@media (max-width: 768px) {
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background-color: #333;
+        position: absolute;
+        top: 100%;
+        left: 0;
+    }
+
+    .nav-links.show {
+        display: flex;
+    }
+
+    .nav-toggle {
+        display: flex;
+    }
+
+    .dropdown-content {
+        position: relative;
+    }
+}
+
+/*This is the start of the css for the modal containing the add /removing crew*/
+/* CSS for modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(5px);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 10% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 900px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 8px;
+    overflow: auto;
+    animation: modalopen 0.4s;
+    display: flex;
+    flex-direction: row;
+}
+
+@keyframes modalopen {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+
+.close {
+    color: #aaa;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.event-detail {
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+}
+
+.event-detail label {
+    flex: 1;
+    font-weight: bold;
+    margin-right: 10px;
+    color: #333;
+}
+
+.event-detail input[type="text"],
+.event-detail input[type="datetime-local"],
+.event-detail select {
+    flex: 2;
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+    font-size: 14px;
+}
+
+/* Optional: Style the form elements within the modal */
+#editForm {
+    display: flex;
+    flex-direction: column;
+}
+
+#editForm .event-detail {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+#editForm label {
+    margin-right: 10px;
+}
+
+#editForm input[type="text"],
+#editForm input[type="checkbox"] {
+    flex: 1;
+}
+
+#editForm button[type="submit"] {
+    align-self: flex-end;
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-bottom: 1rem;
+}
+
+#editForm button[type="submit"]:hover {
+    background-color: #45a049;
+}
+
+#editForm button[type="button"] {
+    align-self: flex-end;
+    padding: 10px 20px;
+    background-color: #f44336;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#editForm button[type="button"]:hover {
+    background-color: #d32f2f;
+}
+
+/* Styles for Crew Member Section */
+#crewMemberSection {
+    flex: 1;
+    padding: 20px;
+    border-left: 1px solid #888;
+    margin-left: 20px;
+}
+
+.crew-header {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 10px;
+}
+
+.crew-header h4 {
+    margin: 0;
+}
+
+#crewSearch {
+    padding: 8px;
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+#crewSearch:focus {
+    border-color: #66afe9;
+    box-shadow: 0 0 5px rgba(102, 175, 233, 0.6);
+}
+#crewMemberList {
+    list-style-type: none;
+    padding: 0;
+}
+
+#crewMemberList li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px;
+    border-bottom: 1px solid #ddd;
+}
+
+#crewMemberList li .remove-icon {
+    cursor: pointer;
+    color: #f44336;
+}
+#searchResults {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    border: 1px solid #ccc;
+    max-width: 300px;
+}
+
+#searchResults li {
+    padding: 12px;
+    border-bottom: 1px solid #ccc;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: 14px;
+}
+
+#searchResults li:last-child {
+    border-bottom: none;
+}
+
+#searchResults li:hover {
+    background-color: #f0f0f0;
+}
+
+.dropdown-menu label:hover {
+    background-color: #ddd;
+}
+
+.dropdown-menu input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+/*CSS  for ALL BOOKINGS to display the bookings and bookings info nice */
+
+.event-div {
+    display: flex;
+    flex-direction: column;
+    max-height: 75px;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out, padding 0.3s ease-out, border-color 0.3s ease-out;
+    padding: 8px;
+    cursor: pointer;
+    border: 1px solid #d3d3d3;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    background-color: #d3d3d3;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.event-div:hover {
+    border-color: #bbb;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+.event-div.expanded {
+    max-height: 500px;
+    padding: 20px;
+    border-color: black;
+    background-color: #d3d3d3;;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+.event-div.full {
+    background-color: #b99f9f;
+}
+
+.event-div.enrolled, .event-div.completed {
+    background-color: #bcf3c7;
+}
+
+.event-header {
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    gap: 10px;
+    margin-bottom: 20px;
+    font-size: 18px;
+}
+.event-div h2 {
+    margin: 0;
+    font-size: 18px;
+    color: #333;
+    font-weight: 500;
+}
+.event-div .info-details {
+    margin-top: 15px;
+    animation: fadeIn 0.3s ease-in;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+.event-info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px 0;
+}
+@keyframes fadeInRow {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+.event-div .button-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 20px;
+    align-self: flex-end;
+}
+.popup-button.enroll-button {
+    padding: 15px 15px;
+    font-size: 16px;
+    background-color: var(--shotmaniacs-blue);
+    color: white;
+    border-radius: 10px;
+}
+.popup-button:hover {
+    background-color: green;
+
+}
+.popup-button:focus {
+    outline: none;
+}
+ .month-divider {
+     display: flex;
+     align-items: center;
+     width: 100%;
+     padding-bottom: 10px;
+     font-size: 20px;
+     color: var(--shotmaniacs-blue);
+ }
+.month-divider::before {
+    content:"";
+    margin-right: 10px;
+    white-space: nowrap;
+    color: var(--shotmaniacs-blue);
+}
+.month-divider::after {
+    content: "";
+    flex-grow: 1;
+    height: 1px;
+    background-color: var(--shotmaniacs-blue);
+    margin-left: 10px;
+}
+#date-of-event {
+    color: var(--shotmaniacs-blue);
+    font-size: 30px;
+    text-align: center;
+    font-weight: 600;
+}
+#day-of-the-week {
+    color: var(--shotmaniacs-blue);
+    font-size: 15px;
+    text-align: center;
+    text-transform: uppercase;
+}
+.event-info-row {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+    margin-top: 20px;
+}
+.event-detail-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 500px;
+    position: relative;
+}
+.event-detail-title {
+    font-weight: bold;
+    color: var(--shotmaniacs-blue);
+    margin-bottom: -25px;
+}
+.event-detail-item:first-child .event-detail-title .event-detail-data {
+    position: absolute;
+    left: calc(50% - 250px);
+}
+.event-detail-item:last-child .event-detail-title .event-detail-data{
+    position: absolute;
+    right: calc(50% - 250px);
+}
+.event-detail-data {
+    margin-top: 30px;
+    color: black;
+}
+#booking-info-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+#title-booking-info{
+    font-size: 22px;
+    color: var(--shotmaniacs-blue);
+}
+#number-of-enrolled{
+    font-size: 15px;
+    color: var(--shotmaniacs-blue);
+}
+.time-of-event{
+    color: var(--shotmaniacs-blue);
+    margin-left: 25px;
+    margin-right: 25px;
+}
+.name-of-event {
+    color: black;
+    font-weight: 700;
+}

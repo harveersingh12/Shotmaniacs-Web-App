@@ -1,0 +1,472 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+
+:root {
+    --shotmaniacs-red: #eb4334;
+    --shotmaniacs-blue: #1696D2;
+}
+
+@font-face {
+    font-family: kionaReg;
+    src: url(Kiona-Regular.woff);
+}
+@font-face {
+    font-family: kionaItalic;
+    src: url(Kiona-Itallic.woff);
+}
+
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    scroll-behavior: smooth;
+    font-family: kionaReg, serif;
+}
+
+
+body, html {
+    height: 100%;
+    width: 100%;
+}
+
+.container {
+    height: 100%;
+    padding: 0;
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
+}
+
+.header {
+    width: 100%;
+    max-height: 15%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+    padding: .5rem;
+}
+
+.header > img {
+    height: 100%;
+    width: auto;
+}
+
+.picture {
+    width: 100%;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(to bottom, black 0%, #333 25%, #666 50%, #999 75%, white 100%);
+}
+
+.picture > img {
+    height: 80%;
+    width: auto;
+    border-radius: 30px;
+}
+
+.info {
+    height: 25rem;
+    width: 100%;
+    background-color: #F1F1F1;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+}
+
+.info > .cards {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    gap: 2rem;
+}
+a {
+    text-decoration: none;
+}
+
+.info > .cards > a > .card {
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: inherit;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.info > .cards > a > .card:hover {
+    transform: scale(1.1);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    height: 100%;
+    transition: all 0.3s ease;
+
+}
+
+.info > .cards > a > .card:hover > img {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
+
+.info > .cards > a > .card:hover .card-title {
+    color: var(--shotmaniacs-red);
+    transform: translateY(0.1%);
+    transition: all 0.3s ease;
+}
+
+
+.info > .cards > a > .card > img {
+    width: 100%;
+    transform: scale(0.9) translateY(5%);
+    height: auto;
+    border-radius: 10px;
+}
+
+.info > .cards > a >.card > .card-title {
+    width: 100%;
+    height: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+    font-weight: 900;
+    color: white;
+    transform: translateY(-150%);
+}
+
+
+.info > .title {
+    height: 25%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: black;
+    font-size: 2rem;
+    padding: 1rem;
+}
+
+.info > .title > span {
+    font-weight: 900;
+    font-size: 2.1rem;
+    padding: .3rem;
+    color: var(--shotmaniacs-red);
+}
+
+.info > .desc {
+    height: 75%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.info > .desc > .desc-text {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+}
+
+
+.info > .desc > .desc-text > .text {
+    font-size: 1rem;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    font-weight: 500;
+}
+
+.booking {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    background: linear-gradient(to bottom, #f1f1f1, #525252);
+    padding-bottom: 3rem;
+}
+
+.booking > .title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 20%;
+    font-weight: 900;
+    padding: .3rem;
+    color: var(--shotmaniacs-red);
+    font-size: 2rem;
+}
+
+
+.booking > .form{
+    width: 100%;
+    max-width: 600px;
+    margin: 0;
+    display: flex;
+    padding: 2rem;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.booking > .form > .eventForm > div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
+/* Styling for labels */
+.booking > .form > .eventForm label {
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    color: #333;
+}
+
+/* Styling for input fields */
+.booking > .form > .eventForm input,
+.booking > .form > .eventForm select {
+    width: 100%;
+    height: 3rem;
+    padding: 0.75rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease;
+}
+
+
+
+.booking > .form > .eventForm .inline-container div select,
+.booking > .form > .eventForm .inline-container div input {
+    margin-top: 0.5rem;
+}
+
+.booking > .form > .eventForm input:focus,
+.booking > .form > .eventForm select:focus {
+    outline: none;
+    border-color: var(--shotmaniacs-red);
+    box-shadow: 0 0 5px var(--shotmaniacs-red);
+}
+
+.booking > .form > .eventForm .inline-container {
+    flex-direction: row;
+    gap: 5rem;
+    width: 100%;
+}
+
+.booking > .form > .buttons {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    justify-content: center;
+    flex-direction: row;
+    align-content: center;
+    padding: 1rem;
+    gap: 1rem;
+}
+
+.booking > .form > #template {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    padding: 1rem;
+    flex-direction: column;
+}
+
+.booking > .form > #template > #filesubmission {
+    padding-top: 1rem;
+}
+
+.booking > .form > #template > #filesubmission > #filesubmitbutton {
+    padding: 0rem 0.3rem 0.1rem 0.3rem;
+
+    color: black;
+    border-width: 1px;
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.5);
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+
+.buttons > .button {
+    background-color: var(--shotmaniacs-red);
+    color: white;
+    border: none;
+    border-radius: 25px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.buttons > .button:hover {
+    background-color: #d43d2e;
+    transform: scale(1.05);
+}
+
+.buttons > .button:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(235, 67, 52, 0.5);
+}
+
+
+.template {
+    text-decoration: none;
+    text-align: center;
+
+}
+
+/*---------------------------------Slider--CSS------------------------------------*/
+.element {
+    font-size: 20px;
+    width: 20%;
+    min-height: 22px;
+    display: inline-block;
+}
+
+.slider-container {
+    width: 100%;
+    font-size: 0;
+    min-height: 60vh;
+    overflow: hidden;
+}
+
+.slider {
+    display: flex;
+    transition: transform 0.5s ease;
+    width: 300%;
+    height: 100%;
+}
+
+.slide {
+    flex: 0 0 85vw;
+    background-color: #fff;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.slide-content {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.slide-content img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.arrow {
+    position: absolute;
+    top: 40%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 20px;
+    font-size: 24px;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.prev {
+    left: 10px;
+}
+
+.next {
+    right: 10px;
+}
+
+button {
+    margin-top: 10px;
+}
+
+/*---------------------------------Footer--CSS------------------------------------*/
+
+footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: #000000;
+    color: white;
+    text-align: center;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+footer img {
+    padding: 1rem;
+    height: 130px;
+    width: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+footer > .socialmedia {
+    width: 50%;
+    height: 3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+}
+
+footer > .socialmedia > a:hover {
+    color: var(--shotmaniacs-red);
+}
+
+footer > .socialmedia > .socials {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 4rem;
+    width: 5rem;
+    flex-direction: row;
+    background-color: transparent;
+}
+
+footer > .socialmedia > .socials > img {
+    height: 90%;
+    width: auto;
+}
+
+footer > .copyright {
+    padding-bottom: 1rem;
+}

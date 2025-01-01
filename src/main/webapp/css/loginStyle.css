@@ -1,0 +1,113 @@
+:root {
+    --shotmaniacs-blue:#1696D2;
+}
+@font-face {
+    font-family: kionaReg;
+    src: url(Kiona-Regular.woff);
+}
+@font-face {
+    font-family: kionaItalic;
+    src: url(Kiona-Itallic.woff);
+}
+* {
+    font-family: kionaReg, serif;
+}
+
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1.5;
+    min-height: 92vh;
+    flex-direction: column;
+    background-image: url("../static/login-background.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+}
+
+.main {
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 15px;
+    box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.8);
+    padding: 10px 20px;
+    transition: transform 0.2s;
+    width: 500px;
+    text-align: center;
+}
+
+#sm-logo {
+    width: 80px;
+    height: auto;
+    margin: 0 auto;
+}
+
+h1 {
+    color: var(--shotmaniacs-blue);
+}
+
+label{
+    display: block;
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    text-align: left;
+    color: #555;
+    font-weight: bold;
+}
+
+
+input.inputField {
+    display: block;
+    width: 100%;
+    margin-bottom: 15px;
+    padding: 10px;
+    box-sizing: border-box;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-family: Arial, serif;
+}
+
+input.inputField:focus {
+    outline: none;
+    border-color: var(--shotmaniacs-blue);
+}
+
+
+
+button {
+    display: block;
+    padding: 15px;
+    border-radius: 10px;
+    margin-left: 40%;
+    margin-bottom: 15px;
+    border: none;
+    color: white;
+    cursor: pointer;
+    background-color: var(--shotmaniacs-blue);
+    width: 20%;
+    font-size: 16px;
+}
+
+button:hover {
+    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.1);
+    transform: scale(1.05);
+    transition: all 0.3s ease;
+}
+
+#show {
+    display: block;
+    justify-content: left;
+    align-items: center;
+    width: 40%;
+    height: 50px;
+}
+
+#login-text {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #fff;
+}

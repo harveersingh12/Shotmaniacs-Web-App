@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="static/favicon.ico" type="image/x-icon">
+    <title>Enroll Tab</title>
+    <link rel="stylesheet" type="text/css" href="css/dashboardStyle.css">
+    <link rel="stylesheet" type="text/css" href="css/popupStyle.css">
+</head>
+<body>
+<div class="header-navbar">
+    <div class="header">
+        <img src="static/logo.png" id="#logo-img-all-bookings" alt="logo-img" />
+    </div>
+        <nav class="navbar">
+            <ul class="nav-links">
+                <li>
+                    <a href = "crew-dashboard.html"><button type="button">< Back</button></a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+<h1>Enroll NOW</h1>
+<div class="main-container">
+    <div class="column c80">
+        <div class="bookings">
+            <button class="custom-button right-side-button" type="button" onclick="showFilterInfo()">Filter</button>
+            <div class="filter-info" id="filter-info">
+                <div id="filter-header" class="filter-header">
+                    <div class="draggable-bar"></div>
+                    <h2>Filter</h2>
+                </div>
+                <label for="client-filter">Name:</label>
+                <input type="text" id="client-filter">
+                <label for="date-filter">Date:</label>
+                <input type="date" id="date-filter">
+                <label for="status-filter">Status:</label>
+                <select id="status-filter">
+                    <option value="">All</option>
+                    <option value="ONGOING">Ongoing</option>
+                    <option value="COMPLETED">Completed</option>
+                </select>
+                <div class="button-container">
+                    <button class="custom-button right-side-button"  onclick="applyFilter()">Apply</button>
+                    <button class="custom-button right-side-button" onclick="clearFilters()">Clear</button>
+                </div>
+            </div>
+            <div id="show-bookings-div"></div>
+        </div>
+    </div>
+</div>
+
+<div class="booking-info" id="booking-info">
+    <div class="info-content">
+
+        <div id="info-details"></div>
+        <div class="enroll-close">
+            <div id="button-group">
+            </div>
+        </div>
+    </div>
+</div>
+<script src="js/popup.js"></script>
+<script src="js/all-bookings.js"></script>
+<script src="js/filter.js"></script>
+</body>
+</html>

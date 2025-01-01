@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="css/crew-info.css">
+    <link rel="stylesheet" type="text/css" href="css/popupStyle.css">
+    <title>Shotmaniacs</title>
+</head>
+<body>
+<div class="edit-popup">
+    <label for="name-input">Name</label>
+    <input type="text" value="${member.memberName}" id="name-input">
+
+    <label for="email-input">Email</label>
+    <input type="text" value="${member.memberEmail}" id="email-input">
+
+    <label for="role-input">Role</label>
+    <input type="text" value="${member.memberRole}" id="role-input">
+
+    <label for="job-input">Job</label>
+    <input type="text" value="${member.memberJob}" id="job-input">
+    <button onclick="submitEdit(${crewId})">Submit</button>
+</div>
+<div class="header-navbar">
+    <div class="header">
+        <img src="static/logo.png" alt="logo-img"/>
+    </div>
+    <nav class="navbar">
+        <ul class="nav-links">
+            <li class="dropdown">
+                <a href="#services" class="dropdown">Services</a>
+                <div class="arrow down"></div>
+                <div class="dropdown-content">
+                    <a href="home.html">Home</a>
+                    <a href="admin-dashboard.html">Admin Dashboard </a>
+                </div>
+            </li>
+            <li>
+                <a href = "login.html"><button type="button" onclick="logOut()">Log out</button></a>
+            </li>
+        </ul>
+        <div class="nav-toggle" id="nav-toggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+</div>
+
+<div class="crew-list">
+    <div id="title">
+        <h3 id="title-text">List of Crew Members</h3>
+    </div>
+    <div class="list-of-crewmembers" id="crewlist">
+        <h1 id="not-found">No crew members found</h1>
+    </div>
+</div>
+<div class="crew-info" id="crew-info">
+    <div class="human-info">
+        <div class="big-info" id="big-info"></div>
+    </div>
+    <div class="right-side-info">
+        <div class="filter">
+            <div class="start-datetime">
+                <label for="start-date">Start Date:</label>
+                <input type="date" id="start-date" class="filter-input">
+                <label for="start-time">Start Time:</label>
+                <input type="time" id="start-time" class="filter-input">
+            </div>
+            <div class="end-datetime">
+                <label for="end-date">End Date:</label>
+                <input type="date" id="end-date" class="filter-input">
+                <label for="end-time">End Time:</label>
+                <input type="time" id="end-time" class="filter-input">
+            </div>
+            <div class="filterbuttons">
+                <button onclick="filterEvents()">Filter Events</button>
+                <button onclick="clearCrewFilters()">Clear Filters</button>
+            </div>
+        </div>
+        <div class="events">
+            <div class="event-list" id="event-list">
+                <div class="upcoming-events" id="upcoming-events">
+                    <div class="upcoming-title">
+                        <p>Upcoming events</p>
+                        <p id="upcoming-total-hours">0 hour(s)</p>
+                    </div>
+                    <div id="upcoming-events-list">
+
+                    </div>
+                </div>
+                <div class="completed-events">
+                    <div class="completed-title">
+                        <p>Completed Events</p>
+                        <p id="completed-total-hours">0 hour(s)</p>
+                    </div>
+                    <div id="completed-events-list">
+                    </div>
+                </div>
+                <div id="no-events-found">
+                    <h3>No bookings found for the selected date range.</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script src="js/popup.js"></script>
+<script src="js/crew-info.js"></script>
+</html>

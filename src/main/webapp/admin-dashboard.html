@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" >
+    <link rel="stylesheet" type="text/css" href="css/dashboardStyle.css">
+    <link rel="icon" href="static/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" type="text/css" href="css/popupStyle.css">
+    <script src="https://kit.fontawesome.com/d8e635cd5c.js" crossorigin="anonymous"></script>
+    <title>Admin Dashboard</title>
+</head>
+<body>
+
+<div class="header-navbar">
+    <div class="header">
+        <img src="static/logo.png" alt="logo-img"/>
+    </div>
+    <nav class="navbar">
+        <ul class="nav-links">
+            <li class="dropdown">
+                <div class="container-with-down-arrow">
+                    <a href="#services" class="dropdown">Services<div class="arrow down"></div></a>
+                </div>
+                <div class="dropdown-content">
+                    <a href="home.html">Home</a>
+                    <button type="button" onclick="changePermissions()">Member Jobs</button>
+                    <a href="home.html#eventForm">Create Booking </a>
+                    <button type="button" onclick="showPopupForm()">Create member account</button>
+                    <a href="crew-info.html">Crew Tab</a>
+                </div>
+            </li>
+            <li>
+                <a href = "login.html"><button type="button" onclick="logOut()">Log out</button></a>
+            </li>
+        </ul>
+        <div class="nav-toggle" id="nav-toggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+</div>
+
+<h1>Admin Dashboard</h1>
+<div class="main-container">
+    <div class="c80">
+        <div class="bookings">
+            <button class="custom-button right-side-button" type="button" onclick="showFilterInfo()">Filter</button>
+            <div class="filter-info" id="filter-info">
+                <div id="filter-header" class="filter-header">
+                    <div class="draggable-bar"></div>
+                </div>
+                <label for="client-filter">Name:</label>
+                <input type="text" id="client-filter">
+                <label for="date-filter">Date:</label>
+                <input type="date" id="date-filter">
+                <label for="status-filter">Status:</label>
+                <select id="status-filter">
+                    <option value="">All</option>
+                    <option value="ONGOING">Ongoing</option>
+                    <option value="COMPLETED">Completed</option>
+                </select>
+                <div class="accepted-filter-container">
+                    <label for="accepted-filter">Accepted:</label>
+                    <input type="checkbox" id="accepted-filter">
+                </div>
+                <div class="button-container">
+                    <button class="custom-button right-side-button" onclick="applyFilter()">Apply</button>
+                    <button class="custom-button right-side-button" onclick="clearFilters()">Clear</button>
+                </div>
+            </div>
+            <div class="table-container">
+                <table class="styled-table">
+                    <thead>
+                    <tr>
+                        <th>No.</th>
+                        <th>Name</th>
+                        <th>Date</th>
+                        <th>Type</th>
+                        <th>Accepted</th>
+                    </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="c20">
+        <div class="announcement-box">
+            <div class="announcement-dropdown-container">
+                <div class ="announcement-box-h3">
+                    <h3>Send Announcement to</h3>
+                </div>
+                <div class="dropdown">
+                    <button class="dropdown-toggle">Select Crew Member</button>
+                    <div class="dropdown-menu" id="crew-dropdown">
+                        <input type="text" id="search-box" placeholder="Search...">
+                        <!-- Crew members will be dynamically added here -->
+                    </div>
+                </div>
+                <div class="selected-options"></div>
+            </div>
+
+            <form class="announcement-form" id="announcement-form">
+                <textarea id="message" name="message" placeholder="Enter your message here..." required></textarea>
+                <label for="urgency">Priority:</label>
+                <select id="urgency">
+                    <option value="0">Low</option>
+                    <option value="1">Medium</option>
+                    <option value="2">High</option>
+                </select>
+                <button class="custom-button centered-button" type="submit">Send Message</button>
+            </form>
+            <div class="announcement-box-h3">
+                <h3>Announcement List</h3>
+            </div>
+            <div class="announcement-container">
+                <table class="announcement-table">
+                    <tbody>
+                    <!-- needs to stay to be able to populate the table -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div id="eventModal" class="modal">
+    <div class="modal-content">
+        <div id="eventDetails">
+            <!-- Event details will be populated here -->
+        </div>
+        <div id="crewMemberSection">
+            <div class="crew-header">
+                <input type="text" id="crewSearch" placeholder="Search and click to add crew members">
+                <ul id="searchResults"></ul>
+            </div>
+            <br/>
+            <h4 id="currentCrewmembers">Current Crewmembers 0/4</h4>
+            <ul id="crewMemberList">
+                <!-- Crew members will be populated here -->
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="create-new-account" id="create-new-account"></div>
+<div class="change-permissions" id="change-permissions"></div>
+<script src="js/popup.js"></script>
+<script src="js/adminDashboard.js"></script>
+<script src="js/changePermission.js"></script>
+<script src="js/adminBookingPopup.js"></script>
+<script src="js/filter.js"></script>
+</body>
+</html>

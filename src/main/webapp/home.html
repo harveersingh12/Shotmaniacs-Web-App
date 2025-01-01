@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="css/popupStyle.css">
+    <link rel="stylesheet" type="text/css" href="css/landingStyle.css">
+    <link rel="icon" href="static/favicon.ico" type="image/x-icon">
+    <title>ShotManiacs</title>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <img src="static/logo.png" alt="logo-img" />
+    </div>
+    <div class="slider-container">
+        <div class="slider">
+            <div class="slide">
+                <div class="slide-content">
+                    <img src="static/landingpage-bg.jpg" alt="landing-img-1">
+                </div>
+            </div>
+            <div class="slide">
+                <div class="slide-content">
+                    <img src="static/photodj.jpg" alt="landing-img-2">
+                </div>
+            </div>
+            <div class="slide">
+                <div class="slide-content">
+                    <img src="static/login-background.jpg" alt="landing-img-3">
+                </div>
+            </div>
+            <div class="slide">
+                <div class="slide-content">
+                    <img src="static/landingpage-bg.jpg" alt="landing-img-1">
+                </div>
+            </div>
+        </div>
+        <button class="arrow prev">&lt;</button>
+        <button class="arrow next">&gt;</button>
+    </div>
+    <div class="info">
+        <div class="title">Let's make <span> MEMORIES </span> together!</div>
+        <div class="cards">
+            <a href="">
+                <div class="card" id="photography-card">
+                    <img src="static/photography.jpg" alt="Photography">
+                    <div class="card-title">
+                        <h4><b>Photography</b></h4>
+                    </div>
+                </div>
+            </a>
+            <a href="">
+                <div class="card" id="film-card">
+                    <img src="static/film.jpg" alt="Film">
+                    <div class="card-title">
+                        <h4><b>Film</b></h4>
+                    </div>
+                </div>
+            </a>
+            <a href="">
+                <div class="card" id="nightlife-card">
+                    <img src="static/nightlife.jpg" alt="Nightlife">
+                    <div class="card-title">
+                        <h4><b>Nightlife</b></h4>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <!-- <div class="desc">
+            <div class="desc-text">
+                <div class="text">
+                    <p>Photography - Festivals, Events</p>
+                    <p>Film - Festivals</p>
+                    <p>Nightlife - Clubs, Parties</p>
+                </div>
+            </div>
+        </div> -->
+    </div>
+    <div class="booking">
+        <div class="title">BOOK NOW</div>
+        <div class="form">
+            <form class="eventForm" id="eventForm">
+                <div class="eventName">
+                    <label for="eventName">Event Name</label>
+                    <input type="text" id="eventName" name="eventName" required>
+                </div>
+                <div class="inline-container">
+                    <div class="eventType">
+                        <label for="eventType">Event Type</label>
+                        <select id="eventType" name="eventType" required>
+                            <option value="festival">Festival</option>
+                            <option value="nightlife">Nightlife</option>
+                            <option value="event">Event</option>
+                            <option value="party">Party</option>
+                        </select>
+                    </div>
+                    <div class="startDatePicker">
+                        <label for="eventDate">Event Date</label>
+                        <input type="datetime-local" id="eventDate" name="eventDate" required/>
+                    </div>
+                </div>
+                <div class="eventLocation">
+                    <label for="eventLocation">Event Location</label>
+                    <input type="text" id="eventLocation" name="eventLocation" required>
+                </div>
+                <div class="eventDuration">
+                    <label for="eventDuration">Event Duration</label>
+                    <input type="number" min="1" step="1" id="eventDuration" name="eventDuration" required>
+                </div>
+                <div class="clientName">
+                    <label for="clientName">Your Name</label>
+                    <input type="text" id="clientName" name="clientName" required>
+                </div>
+                <div class="clientEmail">
+                    <label for="clientEmail">Your Email</label>
+                    <input type="email" id="clientEmail" name="clientEmail" required>
+                </div>
+                <div class="buttons">
+                    <button class="button" type="submit">Submit event</button>
+                </div>
+
+            </form>
+            <div id="template">
+                <p>Or download the
+                    <a href="static/template.xlsx" class="template button">Template</a>
+                    and fill it with your event details for multiple booking requests.
+                </p>
+                <form class="filesubmission" id="filesubmission">
+                    <input type="file" id="fileupload" name="filename" accept=".xlsx">
+                    <input id="filesubmitbutton" type="submit" value="Upload File">
+                </form>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <div class="logo">
+            <img src="static/Shotmaniacs_Logo_White_ZT.png" alt="Shotmaniacs Logo" id="footer-logo" />
+        </div>
+        <div class="socialmedia">
+            <a class="socials" href="https://www.facebook.com/shotmaniacs" target="_blank">
+                <img src="static/facebook.png" alt="facebook">
+            </a>
+            <a class="socials" href="https://www.instagram.com/shotmaniacs" target="_blank">
+                <img src="static/instagram.png" alt="instagram">
+            </a>
+        </div>
+        <div class="copyright">
+            <p>© 2024 ShotManiacs. All rights reserved.</p>
+        </div>
+    </footer>
+</div>
+<script src="js/popup.js"></script>
+<script src="js/home.js"></script>
+<script src="https://cdn.sheetjs.com/xlsx-0.20.2/package/dist/xlsx.full.min.js"></script>
+</body>
+</html>

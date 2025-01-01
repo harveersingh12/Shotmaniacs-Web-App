@@ -1,0 +1,925 @@
+openapi: "3.0.3"
+info:
+  title: Shotmaniacs API
+  version: "1.0"
+servers:
+  - description: Local Deployment
+    url: http://localhost:8080/shotmaniacs_war/api
+tags:
+  - name: Event
+    description: Routes containing CRUD operations for the event table in the database.
+  - name: Auth
+    description: Routes for authenticating a crewmember/admin and registering new accounts.
+  - name: Email
+    description: Route that is used for sending emails.
+  - name: Contract
+    description: Routes containing CRUD operations for the contract table in the database.
+  - name: Crewmembers
+    description: Routes containing CRUD operations for the crewmember table in the database.
+  - name: Image
+    description: Routes containing CRUD operations for the image_store table in the database.
+  - name: Announcement
+    description: Routes containing CRUD operations for the announcement table in the database.
+paths:
+  /event:
+    post:
+      summary: Event Creation
+      description: Creates a new event together with a new client entry in the database. This is the same route that is called for the .xlsx file upload in the homepage.
+      tags:
+        - Event
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                eventName:
+                  type: string
+                eventType:
+                  type: string
+                eventDate:
+                  type: string
+                eventLocation:
+                  type: string
+                eventDuration:
+                  type: integer
+                clientName:
+                  type: string
+                clientEmail:
+                  type: string
+              required:
+                - eventName
+                - eventType
+                - eventDate
+                - eventLocation
+                - eventDuration
+                - clientName
+                - clientEmail
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  eventName:
+                    type: string
+                  eventType:
+                    type: string
+                  eventDate:
+                    type: string
+                  eventLocation:
+                    type: string
+                  eventDuration:
+                    type: integer
+                  clientName:
+                    type: string
+                  clientEmail:
+                    type: string
+        400:
+          description: Bad request
+        405:
+          description: Server error
+    get:
+      summary: Event Fetching
+      description: Fetches all the event from the event table in descending order based on the date.
+      tags:
+        - Event
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    clientName:
+                      type: string
+                    clientEmail:
+                      type: string
+                    eid:
+                      type: integer
+                    name:
+                      type: string
+                    type:
+                      type: string
+                    date:
+                      type: string
+                    location:
+                      type: string
+                    status:
+                      type: string
+                    bookingtype:
+                      type: string
+                    duration:
+                      type: integer
+                    isaccepted:
+                      type: boolean
+                    productionmanager:
+                      type: string
+                    maxmembers:
+                      type: integer
+                    currentmembers:
+                      type: integer
+        401:
+          description: Unauthorized
+        405:
+          description: Server error
+  /event/crew:
+    get:
+      summary: Fetches Events Enrolled In
+      description: Fetches all the events the current crewmember is enrolled in.
+      tags:
+        - Event
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    clientName:
+                      type: string
+                    clientEmail:
+                      type: string
+                    eid:
+                      type: integer
+                    name:
+                      type: string
+                    type:
+                      type: string
+                    date:
+                      type: string
+                    location:
+                      type: string
+                    status:
+                      type: string
+                    bookingtype:
+                      type: string
+                    duration:
+                      type: integer
+                    isaccepted:
+                      type: boolean
+                    productionmanager:
+                      type: string
+                    maxmembers:
+                      type: integer
+                    currentmembers:
+                      type: integer
+        401:
+          description: Unauthorized
+  /event/{eid}:
+    put:
+      summary: Update Event
+      description: Updates an existing event by its ID (eid).
+      tags:
+        - Event
+      parameters:
+        - name: eid
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The ID of the event to update
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                eventName:
+                  type: string
+                eventType:
+                  type: string
+                eventDate:
+                  type: string
+                eventLocation:
+                  type: string
+                eventDuration:
+                  type: integer
+                clientName:
+                  type: string
+                clientEmail:
+                  type: string
+              required:
+                - eventName
+                - eventType
+                - eventDate
+                - eventLocation
+                - eventDuration
+                - clientName
+                - clientEmail
+      responses:
+        200:
+          description: Event updated successfully
+        404:
+          description: Event not found
+        405:
+          description: Failed to update event
+    delete:
+      summary: Delete Event
+      description: Deletes an existing event by its ID.
+      tags:
+        - Event
+      parameters:
+        - name: eid
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The ID of the event to delete
+      responses:
+        200:
+          description: Event deleted successfully
+        404:
+          description: Event not found
+        405:
+          description: Failed to delete event
+
+  /auth/login:
+    post:
+      summary: Logging In
+      description: Logs in a user and returns a Bearer token.
+      tags:
+        - Auth
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                password:
+                  type: string
+              required:
+                - username
+                - password
+      responses:
+        200:
+          description: Login successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  token:
+                    type: string
+        404:
+          description: Login failed
+
+  /auth/register:
+    post:
+      summary: Register Crewmember
+      description: Registers a new crewmember / admin account. Only admins can create accounts.
+      tags:
+        - Auth
+      security:
+        - bearerAuth: [ ]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                password:
+                  type: string
+                email:
+                  type: string
+                role:
+                  type: string
+                job:
+                  type: string
+              required:
+                - username
+                - password
+                - email
+                - role
+                - job
+      responses:
+        200:
+          description: Registration successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: User registered successfully
+        403:
+          description: Unauthorized
+        404:
+          description: Register Invalid
+
+  /announcement:
+    post:
+      summary: Create Announcement
+      description: Creates a new announcement. Requires an Authorization token.
+      tags:
+        - Announcement
+      security:
+        - bearerAuth: [ ]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                announcementDate:
+                  type: string
+                announcementMessage:
+                  type: string
+                urgency:
+                  type: integer
+                crewMembers:
+                  type: array
+                  items:
+                    type: string
+              required:
+                - announcementDate
+                - announcementMessage
+                - urgency
+      responses:
+        200:
+          description: Announcement created successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  announcementID:
+                    type: integer
+                  announcementDate:
+                    type: string
+                  announcementMessage:
+                    type: string
+                  urgency:
+                    type: integer
+                  crewMembers:
+                    type: array
+                    items:
+                      type: string
+        400:
+          description: Bad request
+        401:
+          description: Unauthorized
+        405:
+          description: Server error
+
+    get:
+      summary: Get All Announcements
+      description: Retrieves all announcements. Requires an Authorization token.
+      tags:
+        - Announcement
+      security:
+        - bearerAuth: [ ]
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    announcementID:
+                      type: integer
+                    announcementDate:
+                      type: string
+                    announcementMessage:
+                      type: string
+                    urgency:
+                      type: integer
+                    crewMembers:
+                      type: array
+                      items:
+                        type: string
+        400:
+          description: Bad request
+        401:
+          description: Unauthorized
+        405:
+          description: Server error
+
+    delete:
+      summary: Delete Announcement
+      description: Deletes an existing announcement. Requires an Authorization token.
+      tags:
+        - Announcement
+      security:
+        - bearerAuth: [ ]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                announcementID:
+                  type: integer
+              required:
+                - announcementID
+      responses:
+        200:
+          description: Announcement deleted successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Announcement deleted successfully
+        400:
+          description: Bad request
+        401:
+          description: Unauthorized
+        405:
+          description: Server error
+
+  /contract:
+    get:
+      summary: Get All Contracts
+      description: Retrieves all contracts.
+      tags:
+        - Contract
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    cmid:
+                      type: integer
+                    eid:
+                      type: integer
+        400:
+          description: Bad request
+        405:
+          description: Server error
+
+    post:
+      summary: Create Contract
+      description: Creates a new contract.
+      tags:
+        - Contract
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                eid:
+                  type: integer
+                cmid:
+                  type: integer
+              required:
+                - eid
+                - cmid
+      responses:
+        200:
+          description: Contract created successfully
+          content:
+            application/json:
+              schema:
+                type: string
+                example: Contract created successfully
+        400:
+          description: Bad request
+        401:
+          description: Unauthorized
+        405:
+          description: Server error
+
+    delete:
+      summary: Delete Contract
+      description: Deletes a contract by event ID.
+      tags:
+        - Contract
+      parameters:
+        - in: path
+          name: eid
+          required: true
+          schema:
+            type: integer
+      responses:
+        200:
+          description: Contract deleted successfully
+          content:
+            application/json:
+              schema:
+                type: string
+                example: Contract deleted successfully
+        400:
+          description: Bad request
+        401:
+          description: Unauthorized
+        405:
+          description: Server error
+
+  /contract/{eid}:
+    get:
+      summary: Get Enrolled Crew Members
+      description: Retrieves crew members enrolled in a specific event.
+      tags:
+        - Contract
+      parameters:
+        - in: path
+          name: eid
+          required: true
+          schema:
+            type: integer
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    cmid:
+                      type: integer
+                    name:
+                      type: string
+                    role:
+                      type: string
+                    job:
+                      type: string
+        400:
+          description: Bad request
+        401:
+          description: Unauthorized
+        405:
+          description: Server error
+    post:
+      summary: Enroll in Event
+      description: Enrolls a crew member in an event.
+      tags:
+        - Contract
+      parameters:
+        - in: path
+          name: eid
+          required: true
+          schema:
+            type: integer
+      responses:
+        201:
+          description: Contract created successfully
+          content:
+            application/json:
+              schema:
+                type: string
+                example: Contract created successfully
+        400:
+          description: Bad request
+        401:
+          description: Unauthorized
+        405:
+          description: Server error
+  /contract/status/{eid}:
+    get:
+      summary: Checks Enrollment
+      description: Checks if the current crewmember is already enrolled in the event provided.
+      tags:
+        - Contract
+      parameters:
+        - in: path
+          name: eid
+          required: true
+          schema:
+            type: integer
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: boolean
+        400:
+          description: Bad request
+        401:
+          description: Unauthorized
+        405:
+          description: Server error
+
+  /crewmembers:
+    get:
+      summary: Get All Crew Members
+      description: Retrieves all crew members with their details and profile images.
+      tags:
+        - Crewmembers
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    memberName:
+                      type: string
+                    memberEmail:
+                      type: string
+                    memberRole:
+                      type: string
+                    memberCmid:
+                      type: integer
+                    memberJob:
+                      type: string
+                    memberImage:
+                      type: object
+        500:
+          description: Internal Server Error
+
+  /crewmembers/{cmid}/events:
+    get:
+      summary: Get Corresponding Bookings
+      description: Retrieves all events where the crew member is assigned.
+      tags:
+        - Crewmembers
+      parameters:
+        - in: path
+          name: cmid
+          required: true
+          schema:
+            type: integer
+          description: ID of the crew member
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    clientName:
+                      type: string
+                    clientEmail:
+                      type: string
+                    eid:
+                      type: integer
+                    name:
+                      type: string
+                    type:
+                      type: string
+                    date:
+                      type: string
+                    location:
+                      type: string
+                    status:
+                      type: string
+                    bookingtype:
+                      type: string
+                    duration:
+                      type: integer
+                    isaccepted:
+                      type: boolean
+                    productionmanager:
+                      type: string
+                    maxmembers:
+                      type: integer
+                    currentmembers:
+                      type: integer
+        500:
+          description: Internal Server Error
+  /crewmembers/{cmid}:
+    put:
+      summary: Update Crew Member
+      description: Updates details of a crew member.
+      tags:
+        - Crewmembers
+      parameters:
+        - in: path
+          name: cmid
+          required: true
+          schema:
+            type: integer
+          description: ID of the crew member
+        - in: body
+          name: crewmember
+          required: true
+          schema:
+            type: object
+            properties:
+              memberName:
+                type: string
+                description: Name of the crew member
+              memberEmail:
+                type: string
+                description: Email of the crew member
+              memberJob:
+                type: string
+                description: Job role of the crew member
+              memberRole:
+                type: string
+                description: Role of the crew member
+              memberImage:
+                type: string
+                description: Base64 encoded image data of the crew member
+      responses:
+        204:
+          description: Crew member updated successfully
+        500:
+          description: Internal Server Error
+
+  /crewmembers/jobs:
+    put:
+      summary: Update Crew Member Job
+      description: Updates the job role of a crew member.
+      tags:
+        - Crewmembers
+      parameters:
+        - in: body
+          name: cmid
+          required: true
+          schema:
+            type: object
+            properties:
+              job:
+                type: string
+                description: New job role for the crew member
+              name:
+                type: string
+                description: Name of the crew member
+      responses:
+        200:
+          description: Crew member job updated successfully
+        404:
+          description: Crew member not found
+        500:
+          description: Internal Server Error
+
+  /email/sendannouncement:
+    post:
+      summary: Send Announcement Email
+      description: Sends an email announcement to crew members based on urgency level.
+      tags:
+        - Email
+      parameters:
+        - in: body
+          name: announcement
+          required: true
+          schema:
+            type: object
+            properties:
+              announcementMessage:
+                type: string
+                description: Message content of the announcement
+              urgency:
+                type: integer
+                description: Urgency level of the announcement (2 for urgent)
+              announcementCMID:
+                type: integer
+                description: CMID of the crew member initiating the announcement
+              crewMembers:
+                type: array
+                items:
+                  type: string
+                description: List of crew member names for targeted announcement
+      responses:
+        default:
+          description: Email sent to targeted crew members based on urgency
+  /email/newbooking:
+    post:
+      summary: Notify Admins of New Booking
+      description: Sends an email notification to Shotmaniacs admins when a new booking form is submitted.
+      tags:
+        - Email
+      consumes:
+        - application/json
+      parameters:
+        - in: body
+          name: event
+          required: true
+          schema:
+            type: object
+            properties:
+              eventName:
+                type: string
+                description: Name of the event
+              eventType:
+                type: string
+                description: Type of the event
+              eventDate:
+                type: string
+                description: Date of the event
+              eventLocation:
+                type: string
+                description: Location of the event
+              eventDuration:
+                type: integer
+                description: Duration of the event in hours
+              clientName:
+                type: string
+                description: Name of the client
+              clientEmail:
+                type: string
+                format: email
+                description: Email address of the client
+      responses:
+        default:
+          description: Email sent to administrators notifying them of the new booking request
+  /images:
+    get:
+      summary: Get Image
+      description: Retrieves the image data associated with the authenticated crew member.
+      tags:
+        - Image
+      parameters:
+        - in: header
+          name: Authorization
+          required: true
+          schema:
+            type: string
+            description: Bearer token for authentication
+      responses:
+        200:
+          description: Image data retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  imageName:
+                    type: string
+                    description: Name of the image
+                  data:
+                    type: string
+                    description: Base64-encoded image data
+                  cmid:
+                    type: integer
+                    description: Crew member ID associated with the image
+        401:
+          description: Unauthorized access, invalid or missing token
+        404:
+          description: Image not found
+
+    post:
+      summary: Upload Image
+      description: Uploads an image to the database associated with the authenticated crew member.
+      tags:
+        - Image
+      parameters:
+        - in: body
+          name: image
+          required: true
+          schema:
+            type: object
+            properties:
+              imageName:
+                type: string
+                description: Name of the image
+              data:
+                type: string
+                description: Base64-encoded image data
+      responses:
+        200:
+          description: Image uploaded successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    description: Indicates if the upload was successful
+        400:
+          description: Bad request, error in JSON data
+        500:
+          description: Internal server error, failed to upload image
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: Bearer token
+
+security:
+  - bearerAuth: []

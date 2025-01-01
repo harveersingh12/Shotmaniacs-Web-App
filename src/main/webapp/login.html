@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="css/loginStyle.css">
+    <link rel="icon" href="static/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" type="text/css" href="css/popupStyle.css">
+    <title>Login Page</title>
+</head>
+<body>
+<div class="main">
+    <img id="sm-logo" src="static/Shotmaniacs_Logo_Black_ZT.png" alt="Shotmaniacs Logo">
+    <h1>Shotmaniacs Dashboard</h1>
+    <h3>Enter your login credentials</h3>
+    <form id="loginForm">
+        <label for="Name">Username</label>
+        <input class="inputField"
+               type="name"
+               id="name"
+               name="name"
+               placeholder="Username" required>
+        <label for="password">Password</label>
+        <input class="inputField"
+               type="password"
+               id="password"
+               name="password"
+               placeholder="Password" required>
+        <div id="show">
+            <label><input onclick="showPassword()" type="checkbox" autocomplete="off">Show password</label>
+        </div>
+        <button type="submit"><a id="login-text">Login</a></button>
+    </form>
+</div>
+<script src="js/popup.js"></script>
+<script src="js/login.js"></script>
+</body>
+</html>
